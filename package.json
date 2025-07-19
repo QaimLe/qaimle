@@ -1,0 +1,44 @@
+{
+  "name": "qaimle",
+  "version": "1.0.0",
+  "description": "review based web backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QaimLe/qaimle.git"
+  },
+  "keywords": [
+    "express",
+    "js",
+    "node",
+    "strip"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/QaimLe/qaimle/issues"
+  },
+  "homepage": "https://github.com/QaimLe/qaimle#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "ws": "^8.18.3",
+    "helmet": "^8.1.0",
+    "mongoose": "^8.9.4",
+    "morgan": "^1.10.0",
+    "express-async-handler": "^1.2.0",
+    "express-rate-limit": "^7.5.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
