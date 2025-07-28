@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Qaimle Platform Architecture</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+        .architecture {
+            padding: 30px;
+        }
+        .layer {
+            margin-bottom: 25px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .layer-header {
+            padding: 15px 20px;
+            font-weight: 600;
+            font-size: 1.1em;
+            color: white;
+        }
+        .layer-content {
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .presentation { background: #e74c3c; }
+        .application { background: #3498db; }
+        .domain { background: #2ecc71; }
+        .infrastructure { background: #9b59b6; }
+        .data { background: #f39c12; }
+        
+        .components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .component {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .component h4 {
+            margin: 0 0 8px 0;
+            color: #2c3e50;
+            font-size: 1em;
+        }
+        .component p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .tech-item {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #3498db;
+        }
+        .tech-item h4 {
+            margin: 0 0 10px 0;
+            color: #2c3e50;
+        }
+        .tech-item p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9em;
+        }
+        .migration-path {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        .migration-path h3 {
+            margin: 0 0 15px 0;
+        }
+        .phases {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .phase {
+            background: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 6px;
+            backdrop-filter: blur(10px);
+        }
+        .phase h4 {
+            margin: 0 0 8px 0;
+        }
+        .phase p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Enterprise Qaimle Platform</h1>
+            <p>Clean Architecture • DDD • Monolithic → Microservices Evolution</p>
+        </div>
+        
+        <div class="architecture">
+            <!-- Presentation Layer -->
+            <div class="layer">
+                <div class="layer-header presentation">
+                    📱 Presentation Layer
+                </div>
+                <div class="layer-content">
+                    <div class="components">
+                        <div class="component">
+                            <h4>Web Dashboard</h4>
+                            <p>React SPA with Next.js/Vite, role-based dashboards, optimized for 100k+ monthly active users</p>
+                        </div>
+                        <div class="component">
+                            <h4>Mobile App (Flutter/RN)</h4>
+                            <p>Cross-platform mobile app for field evaluations, offline capabilities, sync when online</p>
+                        </div>
+                        <div class="component">
+                            <h4>API Gateway & Load Balancer</h4>
+                            <p>NGINX/Traefik with rate limiting (1000 req/min/user), auto-scaling, health checks</p>
+                        </div>
+                        <div class="component">
+                            <h4>CDN & Static Assets</h4>
+                            <p>CloudFlare/AWS CloudFront for global content delivery, image optimization</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Application Layer -->
+            <div class="layer">
+                <div class="layer-header application">
+                    ⚙️ Application Layer
+                </div>
+                <div class="layer-content">
+                    <div class="components">
+                        <div class="component">
+                            <h4>Evaluation Service</h4>
+                            <p>Orchestrates evaluation workflows, validation, and submission processes</p>
+                        </div>
+                        <div class="component">
+                            <h4>Analytics Service</h4>
+                            <p>Handles data aggregation, report generation, and performance analysis</p>
+                        </div>
+                        <div class="component">
+                            <h4>User Management Service</h4>
+                            <p>Authentication, authorization, role management, and user lifecycle</p>
+                        </div>
+                        <div class="component">
+                            <h4>Notification Service</h4>
+                            <p>Email, SMS, and in-app notifications for evaluation updates and alerts</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Domain Layer -->
+            <div class="layer">
+                <div class="layer-header domain">
+                    🎯 Domain Layer (DDD Bounded Contexts)
+                </div>
+                <div class="layer-content">
+                    <div class="components">
+                        <div class="component">
+                            <h4>Evaluation Context</h4>
+                            <p>Evaluation entities, survey logic, scoring algorithms, and validation rules</p>
+                        </div>
+                        <div class="component">
+                            <h4>Service Provider Context</h4>
+                            <p>Provider profiles, categorization, performance metrics, and compliance tracking</p>
+                        </div>
+                        <div class="component">
+                            <h4>Analytics Context</h4>
+                            <p>Data models, statistical calculations, trend analysis, and reporting logic</p>
+                        </div>
+                        <div class="component">
+                            <h4>User Context</h4>
+                            <p>User aggregates, permissions, role definitions, and access control</p>
+                        </div>
+			<div class="component">
+                            <h4>Qaimle Context</h4>
+                            <p>Allows users to search for evaluations of specific providers or products before making a decision, offering an assisted discovery flow powered by collective evaluations.</p>
+                        </div>
+			<div class="component">
+                            <h4>Qaimle plus Context</h4>
+                            <p>QaimLe Plus is designed to help users collect fresh, on-demand insights from real users before they make decisions.</p>
+                        </div>
+			<div class="component">
+                            <h4>Loyalty & Ranking System</h4>
+                            <p>Encourage long-term involvement by assigning achievement-based ranks with visible privileges (Ranking System)</p>
+                        </div>
+			<div class="component">
+                            <h4>Admin & Moderator Panel</h4>
+                            <p>Centralized control panel for managing users, data flow, provider approvals, evaluations, system content, roles, and business operations.</p>
+                        </div>
+			<div class="component">
+                            <h4>Partner Access & Coupon System</h4>
+                            <p>Allow approved business partners to publish, manage, and track exclusive discounts, offers, and digital coupons to platform users.</p>
+                        </div>
+			<div class="component">
+                            <h4>QaimLe Community & Blog Hub</h4>
+                            <p>Create a dynamic space for users to share opinions, request public discussions, initiate product/service evaluation campaigns, and stay updated with trends in various sectors.</p>
+                        </div>
+			<div class="component">
+                            <h4>Evaluation Results & Comparison Tools</h4>
+                            <p>Display aggregated monthly results of user evaluations per sector and provider, and allow premium users to compare providers based on evaluation categories.</p>
+                        </div>
+			
+			<div class="component">
+                            <h4>Technical Reports & Platform Logs</h4>
+                            <p>Track all technical activities, platform usage, API interactions, user behavior, and admin actions to ensure system integrity, performance, and transparency.</p>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Infrastructure Layer -->
+            <div class="layer">
+                <div class="layer-header infrastructure">
+                    🔧 Infrastructure Layer
+                </div>
+                <div class="layer-content">
+                    <div class="components">
+                        <div class="component">
+                            <h4>Repository Pattern</h4>
+                            <p>Data access abstraction with PostgreSQL adapters and future Oracle migration path</p>
+                        </div>
+                        <div class="component">
+                            <h4>Message Queue</h4>
+                            <p>Redis/RabbitMQ for async processing, event handling, and background jobs</p>
+                        </div>
+                        <div class="component">
+                            <h4>File Storage</h4>
+                            <p>AWS S3/MinIO for evaluation documents, reports, and media attachments</p>
+                        </div>
+                        <div class="component">
+                            <h4>Caching Layer</h4>
+                            <p>Redis for session management, API responses, and frequently accessed data</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Layer -->
+            <div class="layer">
+                <div class="layer-header data">
+                    💾 Data Layer (Hybrid OLTP/OLAP)
+                </div>
+                <div class="layer-content">
+                    <div class="components">
+                        <div class="component">
+                            <h4>Primary Database (OLTP)</h4>
+                            <p>PostgreSQL 15+ with read replicas, connection pooling (PgBouncer), partitioning for millions of users</p>
+                        </div>
+                        <div class="component">
+                            <h4>Analytics Database (OLAP)</h4>
+                            <p>PostgreSQL + TimescaleDB for time-series data, materialized views, automated data aggregation</p>
+                        </div>
+                        <div class="component">
+                            <h4>Data Pipeline</h4>
+                            <p>ETL jobs (Node.js cron/Apache Airflow) for OLTP→OLAP sync, data warehouse updates</p>
+                        </div>
+                        <div class="component">
+                            <h4>Search & Full-text</h4>
+                            <p>Elasticsearch cluster for complex queries, service provider search, evaluation filtering</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <h4>Backend Runtime</h4>
+                    <p>Node.js with TypeScript for enterprise-grade type safety and developer experience</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Web Framework</h4>
+                    <p>Express.js or Fastify with Helmet, CORS, and security middleware</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Database</h4>
+                    <p>PostgreSQL 15+ with TimescaleDB, future Oracle migration ready</p>
+                </div>
+                <div class="tech-item">
+                    <h4>ORM/Query Builder</h4>
+                    <p>Prisma or TypeORM for type-safe database operations and migrations</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Authentication</h4>
+                    <p>JWT with refresh tokens, OAuth2, and multi-factor authentication</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Deployment</h4>
+                    <p>Docker containers, Kubernetes for orchestration, horizontal pod autoscaling</p>
+                </div>
+                <div class="tech-item">
+                    <h4>Monitoring</h4>
+                    <p>Prometheus + Grafana, ELK stack for logs, APM tools (New Relic/DataDog)</p>
+                </div>
+            </div>
+
+            <!-- Scale Considerations -->
+            <div style="background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%); color: white; padding: 25px; border-radius: 8px; margin-top: 30px;">
+                <h3 style="margin: 0 0 15px 0;">📊 Scale Optimization (100k+ Monthly Active Users)</h3>
+                <div class="phases">
+                    <div class="phase">
+                        <h4>Database Strategy</h4>
+                        <p>Read replicas (3-5 nodes), table partitioning by date/region, connection pooling with PgBouncer (max 100 connections per pool)</p>
+                    </div>
+                    <div class="phase">
+                        <h4>Caching Strategy</h4>
+                        <p>Redis Cluster (6 nodes), 95% cache hit ratio target, smart invalidation, CDN for static assets</p>
+                    </div>
+                    <div class="phase">
+                        <h4>Mobile Optimization</h4>
+                        <p>Flutter recommended for performance, offline-first architecture, delta sync, compression, image optimization</p>
+                    </div>
+                    <div class="phase">
+                        <h4>Auto-scaling</h4>
+                        <p>Kubernetes HPA based on CPU/memory/request count, database connection monitoring, queue length metrics</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Migration Path -->
+            <div class="migration-path">
+                <h3>🚀 Monolithic → Microservices Evolution Path</h3>
+                <div class="phases">
+                    <div class="phase">
+                        <h4>Phase 1: Monolithic Start</h4>
+                        <p>Single Node.js app with clear bounded contexts, shared database, efficient for rapid development and deployment</p>
+                    </div>
+                    <div class="phase">
+                        <h4>Phase 2: Database Segregation</h4>
+                        <p>Separate databases per bounded context while maintaining single codebase, prepare for service extraction</p>
+                    </div>
+                    <div class="phase">
+                        <h4>Phase 3: Service Extraction</h4>
+                        <p>Extract Analytics and Notification services first (least coupled), implement service mesh with Istio</p>
+                    </div>
+                    <div class="phase">
+                        <h4>Phase 4: Full Microservices</h4>
+                        <p>Complete decomposition with Kubernetes orchestration, distributed tracing, and Oracle database migration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
