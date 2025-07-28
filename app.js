@@ -1,14 +1,14 @@
 require('dotenv').config(); // FIRST
 const express = require('express');
 const path = require('path');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const rateLimiter = require('./config/rateLimiter');
+const rateLimiter = require('./shared/config/rateLimiter');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
-// const { handlePaymentWebhook } = require('./controllers/webhookController');
+const evaluationRoutes = require('./modules/evaluation/presentation/routes');
 
 const app = express();
 // const db = require('./config/db');
@@ -20,9 +20,15 @@ const app = express();
 app.use(rateLimiter);
 app.set('trust proxy', 1); // ✅ Best for Railway
 
+// Logging
+app.use(morgan('dev'));
 
-app.get("/healthcheck", (req, res) => res.send("OK"));
+// Parse request body
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.get("/health-check", (req, res) => res.send("OK"));
 
+app.use('/api/evaluation', evaluationRoutes);
 
 
 const swaggerOptions = {
@@ -61,12 +67,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Logging
-app.use(morgan('dev'));
 
-// Parse request body
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
 
 // Static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -76,11 +77,9 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Routes
-const indexRoutes = require('./routes/index');
+const indexRoutes = require('./shared/routes/index');
 app.use('/', indexRoutes);
 
-// Webhook route for PayMob
-// app.post('/api/webhook/paymob', handlePaymentWebhook);
 
 
 
